@@ -1,0 +1,130 @@
+<php>
+function getPetName($id)
+    {
+        $monster = M('monster');
+        $name = $monster->where("`ID`='$id'")->limit(1)->getField('DefName');
+        return $name;
+    }
+function getTypeName($id)
+    {
+        $monster = M('monster');
+        $name = $monster->where("`ID`='$id'")->limit(1)->getField('DefName');
+        return $name;
+    }
+    </php>
+<html>
+ <head>
+   <title>{$title}</title>
+   <style type="text/css">
+   * { padding: 0; margin: 0; }
+   div{ padding: 4px 48px;} 
+   body{ background: #fff; font-family: microsoft yahei; color: #333;} 
+   h1 { font-size: 100px; font-weight: normal; margin-bottom: 12px; }
+   h2 { font-size: 56px; font-weight: normal; margin-bottom: 12px; }
+   p{ line-height: 1.8em; font-size: 20px }
+   </style>
+ </head>
+ <body>
+    <script>
+    function lookup(by,value,ai)
+    {
+        var url = '__ACTION__/'+ by +'/' + value;
+        if (ai)
+            url = url + '?ai=1';
+        window.location = url ;
+    }
+    </script>
+    <div style="padding: 24px 48px;">
+    <h1>:)</h1>
+    <h2><b>{$title} </b></h2>
+    <input type="text" id="find" name="find" value="{$find}"/>
+    <input type="submit" value="通过ID查找" onclick="lookup('id',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <input type="submit" value="通过名称查找" onclick="lookup('name',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI
+    <volist name="monsters" id="data">
+    <h3>逗比 {$data.DefName} 的资料：</h2>
+    <h4>{$data.intro} <if condition="($data.isClose eq 1)">已绝版</if></h3>
+    <ul>
+<!--    <li>NumbersID: {$data.NumbersID} (不同种类精灵不可重复)</li>  -->
+    <li>ID: {$data.ID} <!-- (精灵的形态ID，不同形态精灵ID不可重复) --></li>
+    <li>属性: <switch name="data.Type" >
+ <case value="1" break="1">普通</case>
+ <case value="2" break="1">草</case>
+ <case value="3" break="1">水</case>
+ <case value="4" break="1">火</case>
+ <case value="5" break="1">风</case>
+ <case value="6" break="1">虫</case>
+ <case value="7" break="1">飞行</case>
+ <case value="8" break="1">电</case>
+ <case value="9" break="1">地面</case>
+ <case value="10" break="1">冰</case>
+ <case value="11" break="1">超能</case>
+ <case value="12" break="1">光</case>
+ <case value="13" break="1">暗影</case>
+ <case value="14" break="1">战斗</case>
+ <case value="15" break="1">龙</case>
+ <case value="16" break="1">沙漠</case>
+ <case value="17" break="1">神秘</case>
+ <case value="18" break="1">特质</case>
+ <case value="19" break="1">基佬王</case>
+ <case value="20" break="1">上古</case>
+ <case value="21" break="1">圣灵</case>
+ <default />未知{$data.Type}
+ </switch></li>
+    <neq name="data.EvolvesFrom" value="0"><li>上一形态:  <a href="__ACTION__/id/{$data.EvolvesFrom}">{$data.EvolvesFrom}.{$data['EvolvesFrom']|getPetName}</a></li></neq>
+    <neq name="data.EvolvesTo" value="0"><li>下一形态:  <a href="__ACTION__/id/{$data.EvolvesTo}">{$data.EvolvesTo}.{$data['EvolvesTo']|getPetName}</a></li></neq>
+    <li>特性: {$data.Features} </li><!--{$data.FeaturesID}-->
+    <li>成长类型: <switch name="data.GrowthType" >
+ <case value="1" break="1">A</case>
+ <case value="2" break="1">B</case>
+ <case value="3" break="1">C</case>
+ <case value="4" break="1">D</case>
+ <case value="5" break="1">E</case>
+ <default />未知{$data.Type}
+ </switch>类</li>
+    <li>星级: <php>echo str_repeat('★',$data['StarLv']); </php>
+    <li>基础值：
+    体力{$data.HP} 物攻{$data.Atk} 物防{$data.Def} 特攻{$data.SpAtk} 特防{$data.SpDef} 速度{$data.Spd}
+    </li>
+    <li>极限值：
+    体力{$data['HP']*2+294} 物攻{$data['Atk']*2+294} 物防{$data['Def']*2+294} 特攻{$data['SpAtk']*2+294} 特防{$data['SpDef']*2+294} 速度{$data['Spd']*2+294}
+    </li>
+    <neq name="data.Foundin" value="">
+    <li>获取方式：{$data.Foundin}</li>
+    </neq>
+    <neq name="data.chara" value="">
+    <li>推荐性格：{$data.chara}</li>
+     </neq>
+    <neq name="data.recommendQuality" value="">
+    <li>推荐加点：{$data.recommendQuality}</li>
+    </neq>
+    <neq name="data.recommendSkill" value="">
+    <li>推荐技能：{$data.recommendSkill}</li>
+    </neq>
+    <li>禁止放生: {$data['FreeForbidden']?'是':'否'}</if></li>
+    <li>可否骑乘: {$data['ride']?'是':'否'}</li>
+<!--    < li>经验值系数: {$data.YieldingExp} 学习力值: {$data.YieldingEV}</li> -->
+    <li>捕获成功概率: {$data.CatchRate}%</li>
+    <li>身高: <php>echo str_replace(' ','~',$data['Height']);</php> cm 体重: <php>echo str_replace(' ','~',$data['Weight']);</php> kg</li>
+    <li>雌雄比例: <php>echo str_replace(' ',':',$data['Gender']);</php></li>
+    <gt name="data.use_num" value="0">
+    <li>同时携带限制:  {$data.use_num}只</li>
+    </gt>
+    <li>技能表：
+    <table border="1">
+        <thead><!--<th>ID</th>--><th>名称</th><th>类别</th><th>属性</th><th>威力</th><th>命中率</th><th>怒气</th><th>描述</th></thead>
+        <tbody>
+           <volist name="data.move" id="move">
+           <tr><!--<th>{$move.ID}</th>--><th>{$move.Category}</th><th>{$move.Type}</th><th>{$move.Power}</th><th>{$move.Accuracy}%</th><th>{$move.Anger}</th><th>{$move.Tips}</th></tr>
+           </volist>
+        </thead>
+    </table>
+    </li>
+    </ul>
+    <hr />
+    </volist>
+    <p><a href="__URL__/">返回首页</a></p>
+    </div>
+ 
+ </body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+ <head>
+   <title>{$title}</title>
+   <style type="text/css">
+   * { padding: 0; margin: 0; }
+   div{ padding: 4px 48px;} 
+   body{ background: #fff; font-family: microsoft yahei; color: #333;} 
+   h1 { font-size: 100px; font-weight: normal; margin-bottom: 12px; }
+   p{ line-height: 1.8em; font-size: 36px }
+   </style>
+ </head>
+ <body>
+    <div style="padding: 24px 48px;">
+    <h1>:)</h1>
+    <p>欢迎使用 <b>{$title}</b>！</p>
+    <input type="text" id="find" name="find" value=""/>
+    <input type="submit" value="通过ID查找" onclick="lookup('id',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <input type="submit" value="通过名称查找" onclick="lookup('name',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI
+    <p>近期精灵：</p>
+    <ul>
+        <volist name="monsters" id="m">
+        <li><a href="__URL__/show/id/{$m.ID}/">{$m.DefName}</a></li>
+        </volist>
+    </ul>
+    <p><a href="__URL__/">返回首页</a></p>
+    </div>
+ </body>
+</html>
