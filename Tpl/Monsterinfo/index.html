@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <include file="default:head" />
+ </head>
+ <body>
+	<include file="default:headtool" />
+	<include file="searchbar" />
+    <div class="content">
+    <p>近期精灵：</p>
+    <ul>
+        <volist name="monsters" id="m">
+        <li>{$m.ID}.<a href="__URL__/show/id/{$m.ID}/">{$m.DefName}</a> <php>echo str_repeat('★',$m['StarLv']); </php> </li>
+        </volist>
+    </ul>
+	</div>
+	<include file="default:footer" />
+ </body>
+ </html>

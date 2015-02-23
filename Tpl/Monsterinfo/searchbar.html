@@ -1,0 +1,17 @@
+    <script>
+    function lookup(by,value,ai)
+    {
+		if (value ==''){
+			alert('不能为空！');
+			return false;
+			}
+        var url = '__URL__/show/'+ by +'/' + value;
+        if (ai)
+            url = url + '?ai=1';
+        window.location = url ;
+    }
+    </script>
+    <input class="a" type="text" id="find" name="find" value="{$find}"/>
+    <input class="b" type="button" value="查ID" onclick="lookup('id',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <input class="b" type="button" value="查名称" onclick="lookup('name',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI

@@ -1,0 +1,60 @@
+body { 
+    background: #fff;
+    font-family: microsoft yahei;
+    color: #333;} 
+h1 { 
+    font-size: 100px;
+    font-weight: normal;
+    margin-bottom: 5px; }
+h2 {
+    font-size: 56px;
+    font-weight: normal;
+    margin-bottom: 6px; }
+p { 
+    line-height: 1.8em;
+    font-size: 20px;
+    }
+.a {
+    height:33px;
+    width:171px;
+    border:none;
+    background-image:url(/Common/images/ui_kit.jpg);
+    background-repeat:no-repeat;
+    background-position: -83px -239px;
+    line-height:30px;
+    text-indent:10px;
+}
+.b {
+    height:36px;
+    width:91px;
+    border:none;
+    cursor:pointer;
+    background-color:#3385ff;
+    color:#FFFFFF;
+    font-size:20px;
+    font-family:ºÚÌå;
+}
+li {
+    list-style:none;
+}
+div .content{
+    padding-left: 48px;
+}
+a {
+    font-size:16px;
+}
+a:link {
+    color: blue;
+    text-decoration:none;
+}
+a:active {
+    color: red;
+}
+a:visited {
+   color:purple;
+   text-decoration:none;
+}
+a:hover {
+    color: red;
+    text-decoration:underline;
+}

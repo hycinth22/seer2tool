@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <include file="default:head" />
+ </head>
+ <body>
+	<include file="default:headtool" />
+    <div class="content">
+    <ul>
+        <volist name="functions" id="function">
+        <li><a href="{$function.url}/">{$function.name}</a></li>
+        </volist>
+    </ul>
+	</div>
+	<include file="default:footer" />
+ </body>
+</html>
