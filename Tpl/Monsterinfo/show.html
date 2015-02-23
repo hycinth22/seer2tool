@@ -2,41 +2,21 @@
 <html>
  <head>
  <include file="default:head" />
+ <load href="__CSS__/monster.css" />
  </head>
  <body>
 	<include file="default:headtool" />
+	
 	<include file="searchbar" />
     <div class="content">
+	共找到 {$monsters|count} 个符合的精灵。
     <volist name="monsters" id="data">
-    <h3>逗比 {$data.DefName} 的资料：</h2>
-    <h4>{$data.intro} <if condition="($data.isClose eq 1)">已绝版</if></h3>
+    <h3>精灵 {$data.DefName} 的资料：</h2>
+    <h4>{$data.intro} <if condition="($data.isClose eq 1)"><!-- 已下架/已绝版 --></if></h3>
     <ul>
 <!--    <li>NumbersID: {$data.NumbersID} (不同种类精灵不可重复)</li>  -->
     <li>ID: {$data.ID} <!-- (精灵的形态ID，不同形态精灵ID不可重复) --></li>
-    <li>属性: <switch name="data.Type" >
- <case value="1" break="1">普通</case>
- <case value="2" break="1">草</case>
- <case value="3" break="1">水</case>
- <case value="4" break="1">火</case>
- <case value="5" break="1">风</case>
- <case value="6" break="1">虫</case>
- <case value="7" break="1">飞行</case>
- <case value="8" break="1">电</case>
- <case value="9" break="1">地面</case>
- <case value="10" break="1">冰</case>
- <case value="11" break="1">超能</case>
- <case value="12" break="1">光</case>
- <case value="13" break="1">暗影</case>
- <case value="14" break="1">战斗</case>
- <case value="15" break="1">龙</case>
- <case value="16" break="1">沙漠</case>
- <case value="17" break="1">神秘</case>
- <case value="18" break="1">特质</case>
- <case value="19" break="1">基佬王</case>
- <case value="20" break="1">上古</case>
- <case value="21" break="1">圣灵</case>
- <default />未知{$data.Type}
- </switch></li>
+    <li>属性: {$data.Type|getTypeName}</li>
     <neq name="data.EvolvesFrom" value="0"><li>上一形态:  <a href="__ACTION__/id/{$data.EvolvesFrom}">{$data.EvolvesFrom}.{$data['EvolvesFrom']|getPetName}</a></li></neq>
     <neq name="data.EvolvesTo" value="0"><li>下一形态:  <a href="__ACTION__/id/{$data.EvolvesTo}">{$data.EvolvesTo}.{$data['EvolvesTo']|getPetName}</a></li></neq>
     <li>特性: {$data.Features} </li><!--{$data.FeaturesID}-->
@@ -78,12 +58,34 @@
     </gt>
     <li>技能表：
     <table border="1">
-        <thead><!--<th>ID</th>--><th>名称</th><th>类别</th><th>属性</th><th>威力</th><th>命中率</th><th>怒气</th><th>描述</th></thead>
+        <thead>
+			<th>学习等级</th>
+			<!--<th>ID</th>-->
+			<th>名称</th>
+			<th>类别</th>
+			<th>属性</th>
+			<th>威力</th>
+			<th>命中率</th>
+			<th>怒气</th>
+			<th>描述</th>
+		</thead>
         <tbody>
-           <volist name="data.move" id="move">
-           <tr><!--<th>{$move.ID}</th>--><th>{$move.Category}</th><th>{$move.Type}</th><th>{$move.Power}</th><th>{$move.Accuracy}%</th><th>{$move.Anger}</th><th>{$move.Tips}</th></tr>
+		   <php>$moves = json_decode($data['move'], true);</php>
+           <volist name="moves" id="move">
+		   <php>$skillInfo = getSkillInfo($move['ID']);</php>
+           <tr>	
+				<th><if condition="$move.LearningLv egt 100"><a href="__ROOT__/hidemove/show/id/{$move.ID}">隐藏技能</a><else/>{$move.LearningLv}</if></th>
+				<!--<th>{$move.ID}</th>-->
+				<th>{$skillInfo.Name}</th>
+				<th>{$skillInfo.Category|getSkillCategoryName}</th>
+				<th>{$skillInfo.Type|getTypeName}</th>
+				<th>{$skillInfo.Power}</th>
+				<th>{$skillInfo.Accuracy}%</th>
+				<th>{$skillInfo.Anger}</th>
+				<th>{$skillInfo.Tips}</th>
+				</tr>
            </volist>
-        </thead>
+        </tbody>
     </table>
     </li>
     </ul>
@@ -102,8 +104,49 @@ function getPetName($id)
     }
 function getTypeName($id)
     {
-        $monster = M('monster');
-        $name = $monster->where("`ID`='$id'")->limit(1)->getField('DefName');
-        return $name;
+		switch ($id)
+		{
+			case 1: return '普通';
+			case 2: return '草';
+			case 3: return '水';
+			case 4: return '火';
+			case 5: return '风';
+			case 6: return '虫';
+			case 7: return '飞行';
+			case 8: return '电';
+			case 9: return '地面';
+			case 10: return '冰';
+			case 11: return '超能';
+			case 12: return '光';
+			case 13: return '暗影';
+			case 14: return '战斗';
+			case 15: return '龙';
+			case 16: return '沙漠';
+			case 17: return '神秘';
+			case 18: return '特质';
+			case 19: return '基佬王';
+			case 20: return '上古';
+			case 21: return '圣灵';
+			default: return '未知';
+		}
+		return 'undefined';;
+    }
+function getSkillCategoryName($id)
+    {
+		switch ($id)
+		{
+			case 1: return '物理';
+			case 2: return '特殊';
+			case 4: return '属性';
+			case 80: return '必杀';
+			default: return '隐藏必杀';
+		}
+		return 'undefined';;
+    }
+function getSkillInfo($id)
+    {
+        $move = M('move');
+        $info = $move->where("`ID`='$id'")->limit(1)->select();
+        return $info[0];
     }
 </php>
