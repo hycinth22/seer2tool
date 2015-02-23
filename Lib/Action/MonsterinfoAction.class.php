@@ -13,7 +13,7 @@ class MonsterinfoAction extends Action {
         }
         $this->title = '精灵信息查询';
         $monster_info = M('monster_info');
-        $this->ai = $this->_get('ai');
+        $this->ai = I('param.ai');
         if ($id){
                 $this->find = "$id";
                 $this->monsters = $monster_info->where("`ID`='$id'".($this->ai?"":" AND `ID`<'1000'"))->select();
