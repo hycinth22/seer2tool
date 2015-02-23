@@ -5,7 +5,7 @@
  </head>
  <body>
 	<include file="default:headtool" />
-	<include file="searchbar" />
+<include file="searchbar" />
     <div class="content">
     <p>近期精灵：</p>
     <ul>
@@ -13,7 +13,6 @@
         <li>{$m.ID}.<a href="__URL__/show/id/{$m.ID}/">{$m.DefName}</a> <php>echo str_repeat('★',$m['StarLv']); </php> </li>
         </volist>
     </ul>
-	</div>
 	<include file="default:footer" />
  </body>
  </html>
