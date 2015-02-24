@@ -69,4 +69,18 @@ function calcExtreme($base){
 			$natural = 120;
 			return round( ($base*2 + $natural) * $lv/100 + $lv + 10 + $ev/4, 0);
 		}
+function getMovesInfo($movesJson){
+            $moves = json_decode($movesJson, true);
+            $moveDB = M('move');
+            $result = array( );
+            foreach ($moves as &$move){
+                $LearningLv = $move['LearningLv'];
+                $moveInfo = $moveDB->where("`ID`='{$move['ID']}'")->limit(1)->select();
+                $moveInfo[0]['LearningLv'] = $LearningLv;
+                $result[] = $moveInfo[0];
+            }
+            //echo '----------------------------------';
+			return $result;
+		}
+
 ?>

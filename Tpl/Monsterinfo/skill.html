@@ -11,16 +11,15 @@
             <th style="padding-left:100px; text-align:left;">描述</th>
         </thead>
         <tbody>
-           <php>$moves = json_decode($data['move'], true);</php>
-           <volist name="moves" id="move">
-           <php>$skillInfo = getSkillInfo($move['ID']);</php>
+           <php>$moves = getMovesInfo($data['move']);</php>
+           <volist name="moves" id="skillInfo">
            <tr>
-                <th><if condition="$move.LearningLv egt 100">
-                <a href="__ROOT__/hidemove/find/id/<{$move.ID}>">隐藏技能</a>
+                <th><if condition="$skillInfo.LearningLv egt 100">
+                <a href="__ROOT__/hidemove/find/id/<{$skillInfo.ID}>">隐藏技能</a>
                 <else/>
-                <{$move.LearningLv}>
+                <{$skillInfo.LearningLv}>
                 </if></th>
-                <!--<th><{$move.ID}></th>-->
+                <!--<th><{$skillInfo.ID}></th>-->
                 <th><{$skillInfo.Name}></th>
                 <th><{$skillInfo.Category|getSkillCategoryName}></th>
                 <th><{$skillInfo.Type|getTypeName}></th>

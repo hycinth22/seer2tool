@@ -1,4 +1,12 @@
+    <div class="search">
     <input class="inputBox" type="text" id="find" name="find" value="<if condition="$lastfind neq ''"><{$lastfind}><else />请输入ID或名称</if>" />
     <input class="searchButton" type="button" name="search" id="search" value="查询" />
     <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI
+    <br/>按星级查找：
+    <a class="star" href="__URL__/data/star/1">一星</a>
+    <a class="star" href="__URL__/data/star/2">二星</a>
+    <a class="star" href="__URL__/data/star/3">三星</a>
+    <a class="star" href="__URL__/data/star/4">四星</a>
+    <a class="star" href="__URL__/data/star/5">五星</a>
+    </div>
     <import type="js" file="js.monster_search" />
