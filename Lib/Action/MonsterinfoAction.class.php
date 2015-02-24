@@ -29,7 +29,7 @@ class MonsterinfoAction extends Action {
                 $this->monsters = $monster_info->where("`DefName` LIKE '%{$name}%'".($this->ai?"":" AND (`ID`<='1000' OR `ID`='1100' OR `ID`='1101')"))->select();
         }else if($star){
                 $this->star = $star;
-                $this->monsters = $monster_info->where("`StarLv` = '{$star}' AND `EvolvesTo`='0'".($this->ai?"":" AND (`ID`<='1000' OR `ID`='1100' OR `ID`='1101')"))->select();
+                $this->monsters = $monster_info->where("`StarLv` = '{$star}' AND `EvolvesTo`='0'".($this->ai?"":" AND (`ID`<='1000' OR `ID`='1100' OR `ID`='1101')"))->order('ID desc')->select();
                 $this->display('star');
                 return;
         }else{
