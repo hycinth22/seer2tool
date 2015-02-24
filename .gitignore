@@ -1,4 +1,3 @@
 *.bak
 *.old
-
-Runtime/  
+/Runtime/*

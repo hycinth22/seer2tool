@@ -1,6 +1,7 @@
     <h3>精灵 <{$data.DefName}> 的资料：</h2>
     <h4><{$data.intro}> <if condition="($data.isClose eq 1)"><!-- 已下架/已绝版 --></if></h3>
     <ul>
+    <eq name="data.EvolvesTo" value="0"><div class="bisha" style="float:right" ><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" height="300" width="400" src="http://news.4399.com/uploads/media/seer2/<{$data.ID}>" document.document.form1.="hight" wmode="transparent"></embed></div></eq>
 <!--    <li>NumbersID: <{$data.NumbersID}> (不同种类精灵不可重复)</li>  -->
     <li>ID: <{$data.ID}> <!-- (精灵的形态ID，不同形态精灵ID不可重复) --></li>
     <li>属性: <{$data.Type|getTypeName}></li>
