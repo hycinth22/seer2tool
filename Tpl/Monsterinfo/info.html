@@ -1,0 +1,47 @@
+    <h3>精灵 <{$data.DefName}> 的资料：</h2>
+    <h4><{$data.intro}> <if condition="($data.isClose eq 1)"><!-- 已下架/已绝版 --></if></h3>
+    <ul>
+<!--    <li>NumbersID: <{$data.NumbersID}> (不同种类精灵不可重复)</li>  -->
+    <li>ID: <{$data.ID}> <!-- (精灵的形态ID，不同形态精灵ID不可重复) --></li>
+    <li>属性: <{$data.Type|getTypeName}></li>
+    <neq name="data.EvolvesFrom" value="0"><li>上一形态:  <a href="__ACTION__/id/<{$data.EvolvesFrom}>"><{$data.EvolvesFrom}>.<{$data['EvolvesFrom']|getPetName}></a></li></neq>
+    <neq name="data.EvolvesTo" value="0"><li>下一形态:  <a href="__ACTION__/id/<{$data.EvolvesTo}>"><{$data.EvolvesTo}>.<{$data['EvolvesTo']|getPetName}></a></li></neq>
+    <li>特性: <{$data.Features}> </li><!--<{$data.FeaturesID}>-->
+    <li>成长类型: <{$data.GrowthType|getGrowTypeName}>类</li>
+    <li>星级: <php>echo str_repeat('★',$data['StarLv']); </php>
+    <li>基础值：
+    体力<{$data.HP}> 物攻<{$data.Atk}> 物防<{$data.Def}> 特攻<{$data.SpAtk}> 特防<{$data.SpDef}> 速度<{$data.Spd}>
+    </li>
+    <del><li>种族值：
+    体力<{$data['HP']}> 物攻<{$data['Atk']+50}> 物防<{$data['Def']+50}> 特攻<{$data['SpAtk']+50}> 特防<{$data['SpDef']+50}> 速度<{$data['Spd']+50}>
+    </li></del>
+    <li>极限值：
+    体力<{$data.HP|calcExtreme}> 物攻<{$data.Atk|calcExtreme}> 物防<{$data.Def|calcExtreme}> 特攻<{$data.SpAtk|calcExtreme}> 特防<{$data.SpDef|calcExtreme}> 速度<{$data.Spd|calcExtreme}>
+    </li>
+    <neq name="data.Foundin" value="">
+    <li>获取方式：<{$data.Foundin}></li>
+    </neq>
+    <neq name="data.chara" value="">
+    <li>推荐性格：<{$data.chara}></li>
+     </neq>
+    <neq name="data.recommendQuality" value="">
+    <li>推荐加点：<{$data.recommendQuality}></li>
+    </neq>
+    <neq name="data.recommendSkill" value="">
+    <li>推荐技能：<{$data.recommendSkill}></li>
+    </neq>
+    <li>禁止放生: <{$data['FreeForbidden']?'是':'否'}></if></li>
+    <li>可否骑乘: <{$data['ride']?'是':'否'}></li>
+<!--    < li>经验值系数: <{$data.YieldingExp}> 学习力值: <{$data.YieldingEV}></li> -->
+    <li>捕获成功概率: <{$data.CatchRate}>%</li>
+    <li>身高: <php>echo str_replace(' ','~',$data['Height']);</php> cm 体重: <php>echo str_replace(' ','~',$data['Weight']);</php> kg</li>
+    <li>雌雄比例: <php>echo str_replace(' ',':',$data['Gender']);</php></li>
+    <gt name="data.use_num" value="0">
+    <li>同时携带限制:  <{$data.use_num}>只</li>
+    </gt>
+    <li>技能表：
+    <include file="skill" />
+    </li>
+    </ul>
+    <assign name="count" value="$count+1" />
+  

@@ -1,11 +1,8 @@
-.newMonster {
-	color:red;
-}
-.inputBox {
+﻿.inputBox {
     height:33px;
     width:171px;
     border:none;
-    background-image:url(/Common/images/ui_kit.jpg);
+    background-image:url(../images/ui_kit.jpg);
     background-repeat:no-repeat;
     background-position: -83px -239px;
     line-height:30px;

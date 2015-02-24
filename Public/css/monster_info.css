@@ -1,0 +1,28 @@
+table.skillTable {
+    width: 60%;
+    word-wrap: break-word;
+    table-layout: fixed;
+    padding: 1px 1px 0px 0px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px hidden #ccc;
+    border-bottom: 1px hidden #ccc;
+}
+table.skillTable th {
+    text-align: center;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+table.skillTable1 {
+    background-color: #DFF4CD;
+}
+table.skillTable1 th {
+
+}
+table.skillTable2 {
+    background-color: #E9EAEC;
+}
+table.skillTable2 th  {
+
+}

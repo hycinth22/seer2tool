@@ -1,17 +1,5 @@
-    <script>
-    function lookup(by,value,ai)
-    {
-		if (value ==''){
-			alert('不能为空！');
-			return false;
-			}
-        var url = '__URL__/show/'+ by +'/' + value;
-        if (ai)
-            url = url + '?ai=1';
-        window.location = url ;
-    }
-    </script>
-    <input class="inputBox" type="text" id="find" name="find" value="{$find}"/>
-    <input class="searchButton" type="button" value="查ID" onclick="lookup('id',document.getElementById('find').value,document.getElementById('ai').checked); " />
-    <input class="searchButton" type="button" value="查名称" onclick="lookup('name',document.getElementById('find').value,document.getElementById('ai').checked); " />
+    <import type="css" file="css.monster_search" />
+    <input class="inputBox" type="text" id="find" name="find" value="<if condition="$lastfind neq ''">$lastfind<else />请输入ID或名称</if>" />
+    <input class="searchButton" type="button" name="search" id="search" value="查询" />
     <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI
+    <import type="js" file="js.monster_search" />

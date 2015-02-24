@@ -2,7 +2,12 @@
 <html>
  <head>
  <include file="default:head" />
- <load href="__CSS__/monster.css" />
+ <import type="css" file="css.monster_info" />
+ <style>
+ .newMonster {
+    color: red;
+ }
+ </style>
  </head>
  <body>
 	<include file="default:headtool" />
@@ -11,7 +16,7 @@
     <p>近期精灵：</p>
     <ul>
         <volist name="monsters" id="m">
-        <li>{$m.ID}.<a href="__URL__/show/id/{$m.ID}/">{$m.DefName}</a> <php>echo str_repeat('★',$m['StarLv']); </php> <eq name="m.isNew" value="1"><b class="newMonster">本周新增</b></eq></li>
+        <li><{$m.ID}>.<a href="__URL__/data/id/<{$m.ID}>/"><{$m.DefName}></a> <php>echo str_repeat('★',$m['StarLv']); </php> <eq name="m.isNew" value="1"><b class="newMonster">本周新增</b></eq></li>
         </volist>
     </ul>
 	<include file="default:footer" />

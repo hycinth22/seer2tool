@@ -4,14 +4,24 @@
  <include file="default:head" />
  </head>
  <body>
-	<include file="default:headtool" />
+    <include file="default:headtool" />
     <div class="content">
     <ul>
         <volist name="functions" id="function">
-        <li><a href="{$function.url}/">{$function.name}</a></li>
+        <li>
+
+        <if condition="$function['enabled'] neq 0">
+        <a href="<{$function.url}>/"><{$function.name}></a>
+        <else />
+        <del><a class="disabled nocomplete" href="javascript:void(0);"><{$function.name}></a></del>
+        </if>
+        </li>
         </volist>
+
+        <a class="disabled" href="javascript:void(0);">...</a>
     </ul>
     </div>
-	<include file="default:footer" />
+    <include file="default:footer" />
+    <load href="__JS__/index.js" />
  </body>
 </html>

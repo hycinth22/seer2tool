@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <include file="default:head" />
+ <import type='css' file="css.monster_search" />
+ <import type='css' file="css.monster_info" />
+ </head>
+ <body>
+    <include file="default:headtool" />
+    <include file="searchbar" />
+    <div class="content">
+    共找到 <{$monsters|count}> 个符合的精灵。
+    <ol>
+    <assign name="count" value="1" />
+    <li><volist name="monsters" id="data"></li>
+    <include file="info" />
+    <hr />
+    </volist>
+    <ol>
+    </div>
+    <include file="default:footer" />
+</body>
+</html>

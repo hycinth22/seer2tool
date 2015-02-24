@@ -7,11 +7,12 @@ class IndexAction extends Action {
         //$functions = M('functions'); // 实例化Data数据模型
         //$this->functions = $functions->select();
         $this->title = '约瑟传说大全';
+		$this->naviBar = getNaviBar();
         $this->functions = array(
-            array('url'=>U('/Monsterinfo/Index'), 'name'=>'精灵信息查询'),
-            //array('url'=>U('/hide_move/index'), 'name'=>'隐藏技能查询'),
-            //array('url'=>U('/mapmoster/index'), 'name'=>'地图野怪查询'),
-           //array('url'=>U('/question/index'), 'name'=>'游戏问答查询'),
+            array('url'=>U('/Monsterinfo/Index'), 'name'=>'精灵信息查询' ,'enabled'=> true ),
+            array('url'=>U('/hide_move/index'), 'name'=>'隐藏技能查询' ,'enabled'=> false),
+            array('url'=>U('/mapmoster/index'), 'name'=>'地图野怪查询' ,'enabled'=> false),
+            array('url'=>U('/question/index'), 'name'=>'游戏问答查询' ,'enabled'=> false),
         );
 
         $this->display();
