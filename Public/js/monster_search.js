@@ -8,26 +8,40 @@ function lookup(by,value,ai)
     window.location = '/monsterinfo/data/'+ by +'/' + value + '/ai/' + ai ;
     return true;
 }
-$(document).ready(function(e){
-    $('#find').css('color','#CDCDCD');
-});
+function setSearchTip(){
+    $('#find').val('请输入ID或名称');
+}
+function isSearchTip(text){
+    return text=='请输入ID或名称';
+}
 $('#find').focus(function(){
-    $(this).val('');
+    if (isSearchTip($(this).val())){
+        $(this).val('');
+    }
     $(this).css('color','black');
 });
 $('#find').blur(function(){
     if(!$(this).val()){
-        $(this).val('请输入ID或名称');
-        $(this).css('color','#CDCDCD');
+        if( $('#lastfind').val() ){
+            $(this).val( $('#lastfind').val() );
+        }else{
+            setSearchTip();
         }
+        $(this).css('color','#CDCDCD');
+    }
 });
 $('#search').click(function(){
-    if($('#find').val()=='请输入ID或名称'){
+    if(isSearchTip( $('#find').val())){
         $('#find').val('');
         }
     lookup('auto', $('#find').val(), ($('#ai').prop('checked')?'1':'0') ); 
 });
-$('a.star').click(function(e){
+$('a.star').click(function(){
     $(this)[0].href += '/ai/' + ($('#ai').prop('checked')?'1':'0');
     return true;
+});
+$("#find").keydown(function(event){
+     if (event.keyCode==13){
+        $('#search').click();
+     }
 });

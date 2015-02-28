@@ -15,7 +15,7 @@
            <volist name="moves" id="skillInfo">
            <tr>
                 <th><if condition="$skillInfo.LearningLv egt 100">
-                <a href="__ROOT__/hidemove/find/id/<{$skillInfo.ID}>">隐藏技能</a>
+                <a data="__ROOT__/hidemove/find/id/<{$skillInfo.ID}>">隐藏技能</a>
                 <else/>
                 <{$skillInfo.LearningLv}>
                 </if></th>
@@ -26,7 +26,7 @@
                 <th><{$skillInfo.Power}></th>
                 <th><{$skillInfo.Accuracy}>%</th>
                 <th><{$skillInfo.Anger}></th>
-                <th style="padding-left:3px; text-align:left;" ><{$skillInfo.Tips}></th>
+                <th class="skill_tip"><{$skillInfo.Tips}></th>
             </tr>
            </volist>
         </tbody>

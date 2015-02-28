@@ -5,8 +5,8 @@
 <!--    <li>NumbersID: <{$data.NumbersID}> (不同种类精灵不可重复)</li>  -->
     <li>ID: <{$data.ID}> <!-- (精灵的形态ID，不同形态精灵ID不可重复) --></li>
     <li>属性: <{$data.Type|getTypeName}></li>
-    <neq name="data.EvolvesFrom" value="0"><li>上一形态:  <a href="__ACTION__/id/<{$data.EvolvesFrom}>"><{$data.EvolvesFrom}>.<{$data['EvolvesFrom']|getPetName}></a></li></neq>
-    <neq name="data.EvolvesTo" value="0"><li>下一形态:  <a href="__ACTION__/id/<{$data.EvolvesTo}>"><{$data.EvolvesTo}>.<{$data['EvolvesTo']|getPetName}></a></li></neq>
+    <if condition="$data['EvolvesFrom']"><li>上一形态:  <a href="__ACTION__/id/<{$data.EvolvesFrom}>"><{$data.EvolvesFrom}>.<{$data['EvolvesFrom']|getPetName}></a></li></if>
+    <if condition="$data['EvolvesTo']"><li>下一形态:  <a href="__ACTION__/id/<{$data.EvolvesTo}>"><{$data.EvolvesTo}>.<{$data['EvolvesTo']|getPetName}></a></li></if>
     <li>特性: <{$data.Features}> </li><!--<{$data.FeaturesID}>-->
     <li>成长类型: <{$data.GrowthType|getGrowTypeName}>类</li>
     <li>星级: <php>echo str_repeat('★',$data['StarLv']); </php>
@@ -19,27 +19,27 @@
     <li>极限值：
     体力<{$data.HP|calcExtreme}> 物攻<{$data.Atk|calcExtreme}> 物防<{$data.Def|calcExtreme}> 特攻<{$data.SpAtk|calcExtreme}> 特防<{$data.SpDef|calcExtreme}> 速度<{$data.Spd|calcExtreme}>
     </li>
-    <neq name="data.Foundin" value="">
+    <if condition="$data['Foundin']">
     <li>获取方式：<{$data.Foundin}></li>
-    </neq>
-    <neq name="data.chara" value="">
+    </if>
+    <if condition="$data['chara']">
     <li>推荐性格：<{$data.chara}></li>
-     </neq>
-    <neq name="data.recommendQuality" value="">
+     </if>
+    <if condition="$data['recommendQuality']">
     <li>推荐加点：<{$data.recommendQuality}></li>
-    </neq>
-    <neq name="data.recommendSkill" value="">
+    </if>
+    <if condition="$data['recommendSkill']">
     <li>推荐技能：<{$data.recommendSkill}></li>
-    </neq>
+    </if>
     <li>禁止放生: <{$data['FreeForbidden']?'是':'否'}></if></li>
     <li>可否骑乘: <{$data['ride']?'是':'否'}></li>
 <!--    < li>经验值系数: <{$data.YieldingExp}> 学习力值: <{$data.YieldingEV}></li> -->
     <li>胶囊捕获成功概率: <{$data.CatchRate}>%</li>
     <li>身高: <php>echo str_replace(' ','~',$data['Height']);</php> cm 体重: <php>echo str_replace(' ','~',$data['Weight']);</php> kg</li>
     <li>雌雄比例: <php>echo str_replace(' ',':',$data['Gender']);</php></li>
-    <gt name="data.use_num" value="0">
+    <if condition="$data['use_num']">
     <li>同时携带限制:  <{$data.use_num}>只</li>
-    </gt>
+    </if>
     <li>技能表：
     <include file="skill" />
     </li>

@@ -1,5 +1,6 @@
     <div class="search">
-    <input class="inputBox" type="text" id="find" name="find" value="<if condition="$lastfind neq ''"><{$lastfind}><else />请输入ID或名称</if>" />
+    <if condition="$lastfind"><input type="hidden" name="lastfind" id="lastfind" value="<{$lastfind}>" /></if>
+    <input class="inputBox" type="text" id="find" name="find" <if condition="$lastfind">value="<{$lastfind}>"<else />style="color: #CDCDCD;" value="请输入ID或名称"</if>" />
     <input class="searchButton" type="button" name="search" id="search" value="查询" />
     <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI
     <br/>按星级查找：
@@ -10,3 +11,4 @@
     <a class="star" href="__URL__/data/star/5">五星</a>
     </div>
     <import type="js" file="js.monster_search" />
+    

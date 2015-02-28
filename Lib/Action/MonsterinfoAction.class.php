@@ -23,13 +23,12 @@ class MonsterinfoAction extends Action {
                 $this->lastfind = $id;
                 $this->monsters = $monster_info->where("`ID`='{$id}'")->select();
 				//$moves = json_decode($this->monsters[0]['move']);
-				
         }else if($name){
                 $this->lastfind = $name;
-                $this->monsters = $monster_info->where("`DefName` LIKE '%{$name}%'".($this->ai?"":" AND (`ID`<='1000' OR `ID`='1100' OR `ID`='1101')"))->select();
+                $this->monsters = $monster_info->where( "`DefName` LIKE '%{$name}%' AND ".($this->getAICondSQL()) )->select();
         }else if($star){
                 $this->star = $star;
-                $this->monsters = $monster_info->where("`StarLv` = '{$star}' AND `EvolvesTo`='0'".($this->ai?"":" AND (`ID`<='1000' OR `ID`='1100' OR `ID`='1101')"))->order('ID desc')->select();
+                $this->monsters = $monster_info->where( "`StarLv`='{$star}' AND `EvolvesTo`='0' AND ".$this->getAICondSQL() )->order('ID desc')->select();
                 $this->display('star');
                 return;
         }else{
@@ -37,5 +36,14 @@ class MonsterinfoAction extends Action {
 		}
         //$monster_info->where("ID=$id")->limit(1)->select();
         $this->display();
+    }
+    protected function getAICondSQL(){
+    //set this->ai before use this function, maybe you can get it from URL param
+        if ($this->ai){
+            $sql = "TRUE";
+        }else{
+            $sql = "( (`ID`<='1000' OR `ID`='1100' OR `ID`='1101') AND `ID`<>'500' )";
+        }
+        return $sql;
     }
 }
