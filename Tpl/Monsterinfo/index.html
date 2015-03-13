@@ -16,7 +16,7 @@
     <p>近期精灵：</p>
     <ul>
         <volist name="monsters" id="m">
-        <li><{$m.ID}>.<a href="__URL__/data/id/<{$m.ID}>/"><{$m.DefName}></a> <php>echo str_repeat('★',$m['StarLv']); </php> <eq name="m.isNew" value="1"><b class="newMonster">本周新增</b></eq></li>
+        <li><{$m.ID}>.<a href="__URL__/data/id/<{$m.ID}>/"><{$m.DefName}></a> <{$m.StarLv|getStar}> <eq name="m.isNew" value="1"><b class="newMonster">本周新增</b></eq></li>
         </volist>
     </ul>
 	</div>

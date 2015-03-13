@@ -14,7 +14,7 @@
            <php>$moves = getMovesInfo($data['move']);</php>
            <volist name="moves" id="skillInfo">
            <tr>
-                <th><if condition="$skillInfo.LearningLv egt 100">
+                <th><if condition="$skillInfo.LearningLv gt 100">
                 <a data="__ROOT__/hidemove/find/id/<{$skillInfo.ID}>">隐藏技能</a>
                 <else/>
                 <{$skillInfo.LearningLv}>

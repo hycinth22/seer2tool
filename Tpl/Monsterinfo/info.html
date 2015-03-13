@@ -1,7 +1,17 @@
     <h3>精灵 <{$data.DefName}> 的资料：</h2>
     <h4><{$data.intro}> <if condition="($data.isClose eq 1)"><!-- 已下架/已绝版 --></if></h3>
     <ul>
-    <eq name="data.EvolvesTo" value="0"><div class="bisha" style="float:right" ><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" height="300" width="400" src="http://news.4399.com/uploads/media/seer2/<{$data.ID}>" document.document.form1.="hight" wmode="transparent"></embed></div></eq>
+    <eq name="data.EvolvesTo" value="0">
+    <div class="bisha">
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"
+        width="100%" height="100%">
+        <param name="movie" value="http://7xi2ls.com1.z0.glb.clouddn.com/<{$data.ID}" />
+        <param name="wmode" value="transparent" />
+        <param name="scale" value="noborder" />
+        <embed type="application/x-shockwave-flash" width="100%" height="100%" src="http://7xi2ls.com1.z0.glb.clouddn.com/<{$data.ID}>" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" scale="noborder" ></embed>
+    </object>
+    </div>
+    </eq>
 <!--    <li>NumbersID: <{$data.NumbersID}> (不同种类精灵不可重复)</li>  -->
     <li>ID: <{$data.ID}> <!-- (精灵的形态ID，不同形态精灵ID不可重复) --></li>
     <li>属性: <{$data.Type|getTypeName}></li>

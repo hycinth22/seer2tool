@@ -82,5 +82,10 @@ function getMovesInfo($movesJson){
             //echo '----------------------------------';
 			return $result;
 		}
-
+function getStar($starLv){
+			return str_repeat('★',$starLv);
+		}
+function isAImonster($id){
+    return ($id<=1000 AND $id!=500) OR $id==1100 OR $id==1101;
+}
 ?>
