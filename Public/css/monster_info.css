@@ -38,14 +38,16 @@ table.skillTable2 {
     background-color:#3385ff;
     color:#FFFFFF;
     font-size:20px;
-    font-family:ΊΪΜε;
+    font-family:ι»‘δ½“;
 }
 .skill_tip {
     padding-left:3px;
     text-align:left;
 }
 div .bisha{
-    float:right;
-    height:400px;
-    width:500px;
+    position: fixed;
+    float:left;
+    height:600px;
+    width:1000px;
+    z-index:9999; 
 }
