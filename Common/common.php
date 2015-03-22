@@ -65,12 +65,11 @@ function getSkillInfo($id)
 function getNaviBar(){
 			return '<p class="bar" style="font-size"><a href="__ROOT__/">首页</a>-><a href="__URL__/">功能页</a>-><a href="__SELF__">当前页</a></p>';
 		}
+function calcAttr($base, $lv=1, $natural=0, $chara=1, $ev=0){
+			return round( (($base*2 + $natural) * $lv/100 + $lv + 10 + $ev/4)*$chara, 0);
+		}  
 function calcExtreme($base){
-			$ev = 255;
-			$lv = 100;
-			$chara = 1.1;
-			$natural = 120;
-			return round( ($base*2 + $natural) * $lv/100 + $lv + 10 + $ev/4, 0);
+			return calcAttr($base, 100, 120, 1.1, 255);
 		}
 function getMovesInfo($movesJson){
             $moves = json_decode($movesJson, true);
