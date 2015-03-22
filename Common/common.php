@@ -53,10 +53,13 @@ function getGrowTypeName($id)
         $array = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
         return strtoupper($array[$id-1]);
     }
+function getEmblem2($NumbersID)
+    {
+        return M('emblem2')->where("`NumbersID`='{$NumbersID}'")->select();
+    }
 function getSkillInfo($id)
     {
-        $move = M('move');
-        $info = $move->where("`ID`='$id'")->limit(1)->select();
+        $info = M('move')->where("`ID`='$id'")->limit(1)->select();
         return $info[0];
     }
 function getNaviBar(){

@@ -11,10 +11,11 @@
     <div class="content">
     共找到 <{$monsters|count}> 个符合条件的精灵。
     <ol>
-    <assign name="count" value="1" />
+    <assign name="i" value="1" />
     <li><volist name="monsters" id="data"></li>
     <include file="info" />
     <hr />
+    <assign name="i" value="$count+1" />
     </volist>
     <ol>
     </div>

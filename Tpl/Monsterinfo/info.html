@@ -17,15 +17,29 @@
     <li>属性: <{$data.Type|getTypeName}></li>
     <if condition="$data['EvolvesFrom']"><li>上一形态:  <a href="__ACTION__/id/<{$data.EvolvesFrom}>"><{$data.EvolvesFrom}>.<{$data['EvolvesFrom']|getPetName}></a></li></if>
     <if condition="$data['EvolvesTo']"><li>下一形态:  <a href="__ACTION__/id/<{$data.EvolvesTo}>"><{$data.EvolvesTo}>.<{$data['EvolvesTo']|getPetName}></a></li></if>
-    <li>特性: <{$data.Features}> </li><!--<{$data.FeaturesID}>-->
+    <li>特性: <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"
+        width="50" height="20">
+        <param name="movie" value="http://seer2.61.com/res/item/feature/icon/<{$data.FeaturesID}>.swf" />
+        <param name="scale" value="noborder" />
+        <embed type="application/x-shockwave-flash" width="50" height="20" src="http://seer2.61.com/res/item/feature/icon/<{$data.FeaturesID}>.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"  scale="noborder" ></embed>
+    </object><{$data.Features}> </li><!--<{$data.FeaturesID}>-->
+    <li>纹章【<{$data.emblem_Name}>】: <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"
+        width="50" height="20">
+        <param name="movie" value="http://seer2.61.com/res/item/emblem/icon/<{$data.emblem_ID}>.swf" />
+        <param name="scale" value="noborder" />
+        <embed type="application/x-shockwave-flash" width="50" height="20" src="http://seer2.61.com/res/item/emblem/icon/<{$data.emblem_ID}>.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"  scale="noborder" ></embed> 【<{$data.emblem_Tip}>】</li><!--<{$data.emblem_ID}>-->
+        <php>$emblems2 = getEmblem2($data['NumbersID']);</php>
+    <volist name="emblems2" id="emblem2">
+    <li>第二纹章【<{$emblem2.emblem2_Name}>】： <{$emblem2.emblem2_Tip}></li>
+    </volist>
     <li>成长类型: <{$data.GrowthType|getGrowTypeName}>类</li>
     <li>星级: <php>echo str_repeat('★',$data['StarLv']); </php>
     <li>基础值：
     体力<{$data.HP}> 物攻<{$data.Atk}> 物防<{$data.Def}> 特攻<{$data.SpAtk}> 特防<{$data.SpDef}> 速度<{$data.Spd}>
     </li>
-    <del><li>种族值：
+    <li>种族值：
     体力<{$data['HP']}> 物攻<{$data['Atk']+50}> 物防<{$data['Def']+50}> 特攻<{$data['SpAtk']+50}> 特防<{$data['SpDef']+50}> 速度<{$data['Spd']+50}>
-    </li></del>
+    </li>
     <li>极限值：
     体力<{$data.HP|calcExtreme}> 物攻<{$data.Atk|calcExtreme}> 物防<{$data.Def|calcExtreme}> 特攻<{$data.SpAtk|calcExtreme}> 特防<{$data.SpDef|calcExtreme}> 速度<{$data.Spd|calcExtreme}>
     </li>
@@ -54,5 +68,4 @@
     <include file="skill" />
     </li>
     </ul>
-    <assign name="count" value="$count+1" />
   
