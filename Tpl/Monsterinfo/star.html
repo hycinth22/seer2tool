@@ -14,7 +14,7 @@
     <assign name="i" value="1" />
     <li><volist name="monsters" id="data"></li>
     <a href="__ACTION__/id/<{$data.ID}>"><{$data.ID}>.<{$data.DefName}></a><br/>
-    <assign name="i" value="$count+1" />
+    <assign name="i" value="$i+1" />
     </volist>
     <ol>
     </div>
