@@ -22,7 +22,7 @@ class MonsterinfoAction extends Action {
         if ($id or $name){
                 $this->lastfind = $id?$id:$name;
                 $condition = $id?("`ID`='{$id}'"):("`DefName` LIKE '%{$name}%' AND ".($this->getAICondSQL()));
-                $this->monsters = $monster_info->Distinct(true)->alias('a')->where($condition)->join('JOIN seer2tool_emblem b ON a.NumbersID=b.NumbersID')->select();
+                $this->monsters = $monster_info->Distinct(true)->alias('a')->where($condition)->join('LEFT JOIN seer2tool_emblem b ON a.NumbersID=b.NumbersID')->select();
         }else if($star){
                 $this->star = $star;
                 $this->monsters = $monster_info->where( "`StarLv`='{$star}' AND `EvolvesTo`='0' AND ".$this->getAICondSQL() )->order('ID desc')->select();
