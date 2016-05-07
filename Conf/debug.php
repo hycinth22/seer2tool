@@ -1,12 +1,12 @@
 <?php
 return array(
-		'DB_TYPE'   => 'mysql',
-		'DB_HOST'   => 'localhost',
-		'DB_NAME'   => 'seer2tool',
-		'DB_USER'   => 'root',
-		'DB_PWD'    => 'root',
-		'DB_PORT'   => 3306,
-		'DB_PREFIX' => 'seer2tool_',
+	'DB_TYPE'   => 'mysqli',
+   	'DB_HOST'   => MYSQL_HOST, // 服务器地址
+    	'DB_NAME'   => 'seer2tool', // 数据库名
+    	'DB_USER'   => MYSQL_USER, // 用户名
+    	'DB_PWD'    => MYSQL_PASSWORD, // 密码
+    	'DB_PORT'   => MYSQL_PORT, // 端口
+	'DB_PREFIX' => 'seer2tool_',
         'LOG_RECORD'=>true, //开启日志记录
         'LOG_EXCEPTION_RECORD' => true, //记录异常
         'LOG_LEVEL'        => 'EMERG,ALERT,CRIT,ERR,WARN,NOTIC,INFO,DEBUG,SQL',
