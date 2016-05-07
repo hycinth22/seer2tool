@@ -6,12 +6,12 @@ return array(
     'URL_HTML_SUFFIX'       => NULL, //伪静态后缀
     'URL_404_REDIRECT'      =>  '__ROOT__/404.html', //404页面
     'OUTPUT_ENCODE' => true, //页面压缩
-    'DB_TYPE'   => 'mysql', // 数据库类型
-    'DB_HOST'   => 'localhost', // 服务器地址
+    'DB_TYPE'   => 'mysqli', // 数据库类型
+    'DB_HOST'   => MYSQL_HOST, // 服务器地址
     'DB_NAME'   => 'seer2tool', // 数据库名
-    'DB_USER'   => 'root', // 用户名
-    'DB_PWD'    => 'root', // 密码
-    'DB_PORT'   => 3306, // 端口
+    'DB_USER'   => MYSQL_USER, // 用户名
+    'DB_PWD'    => MYSQL_PASSWORD, // 密码
+    'DB_PORT'   => MYSQL_PORT, // 端口
     'DB_PREFIX' => 'seer2tool_', // 数据库表前缀
 	'DB_CHARSET'  => 'utf8', //数据库编码
 	'TMPL_PARSE_STRING'  =>array(
