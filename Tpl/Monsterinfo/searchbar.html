@@ -1,5 +1,4 @@
-    <import type="css" file="css.monster_search" />
-    <input class="inputBox" type="text" id="find" name="find" value="<if condition="$lastfind neq ''">$lastfind<else />请输入ID或名称</if>" />
+    <input class="inputBox" type="text" id="find" name="find" value="<if condition="$lastfind neq ''"><{$lastfind}><else />请输入ID或名称</if>" />
     <input class="searchButton" type="button" name="search" id="search" value="查询" />
     <input type="checkbox" id="ai" name="ai" value="1" <eq name="ai" value="1">checked</eq> />包含BOSS AI
     <import type="js" file="js.monster_search" />

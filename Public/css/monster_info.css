@@ -17,12 +17,26 @@ table.skillTable th {
 table.skillTable1 {
     background-color: #DFF4CD;
 }
-table.skillTable1 th {
-
-}
 table.skillTable2 {
     background-color: #E9EAEC;
 }
-table.skillTable2 th  {
-
+.inputBox {
+    height:33px;
+    width:171px;
+    border:none;
+    background-image:url(../images/ui_kit.jpg);
+    background-repeat:no-repeat;
+    background-position: -83px -239px;
+    line-height:30px;
+    text-indent:10px;
+}
+.searchButton {
+    height:36px;
+    width:91px;
+    border:none;
+    cursor:pointer;
+    background-color:#3385ff;
+    color:#FFFFFF;
+    font-size:20px;
+    font-family:ºÚÌå;
 }

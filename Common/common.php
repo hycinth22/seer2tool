@@ -60,7 +60,7 @@ function getSkillInfo($id)
         return $info[0];
     }
 function getNaviBar(){
-			return '';
+			return '<p class="bar" style="font-size"><a href="__ROOT__/">首页</a>-><a href="__URL__/">功能页</a>-><a href="__SELF__">当前页</a></p>';
 		}
 function calcExtreme($base){
 			$ev = 255;
